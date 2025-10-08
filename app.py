@@ -1,9 +1,9 @@
-# app.py - Simplest version using API
+# app.py
 import gradio as gr
 from huggingface_hub import InferenceClient
 
-# Free API - no model download!
-client = InferenceClient(token="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")  
+# Recieving HF_TOKEN from environment variable for security
+client = InferenceClient(token=os.getenv("HF_TOKEN")) 
 
 def generate_story(prompt, age_group, length):
     messages = [
