@@ -1,4 +1,3 @@
-# app.py
 import gradio as gr
 import os
 from huggingface_hub import InferenceClient
@@ -21,8 +20,8 @@ def generate_story(prompt, age_group, length):
     response = client.chat_completion(
         model="google/gemma-2-2b-it",
         messages=messages,
-        max_tokens=length if length >= 600 else 600,
-        temperature=0.9,
+        max_tokens= max(length, 750),
+        temperature=0.8,
         top_p=0.95,
         stop=None
     ) 
@@ -34,9 +33,9 @@ demo = gr.Interface(
     inputs=[
         gr.Textbox(label="Story Prompt", placeholder="Once upon a time..."),
         gr.Radio(["3-5 years", "6-8 years", "9-12 years"], label="Age", value="6-8 years"),
-        gr.Slider(minimum=400, maximum=800, step=50, value=600, label="Length (max tokens)")
+        gr.Radio([600, 800], label="Story Length (max tokens)", value=800)
     ],
-    outputs=gr.Textbox(label="Story", lines=15),
+    outputs=gr.Textbox(label="Story", lines=20),
     title="Bedtime Story Generator"
 )
 
