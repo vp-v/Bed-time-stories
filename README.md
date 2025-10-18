@@ -9,4 +9,4 @@ app_file: app.py
 pinned: false
 ---
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+Check out this space at https://huggingface.co/spaces/ai-7-vyshnavi/Bed-time-stories
